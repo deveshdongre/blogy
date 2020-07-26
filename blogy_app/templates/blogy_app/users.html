@@ -1,0 +1,16 @@
+<html>
+  {% load static %}
+  <body>
+    {% if users %}
+    <ul>
+      {% for user in users %}
+      <li>
+        {{user.username}} {{user.email}}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+  </body>
+</html>
