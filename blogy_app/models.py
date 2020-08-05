@@ -7,3 +7,16 @@ from django.contrib.auth.models import User
 # class UserDetail(models.Model):
 #     name = models.CharField(max_length=100)
 #     password =
+
+class Articles(models.Model):
+    title = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    content = models.TextField(null=False)
+    Author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.title
