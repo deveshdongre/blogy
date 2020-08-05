@@ -1,0 +1,15 @@
+<html>
+  {% load static %}
+  <body>
+    {% if articles %} {% for post in articles %}
+    <div>
+      <h1>{{post.title}}</h1>
+
+      <p>{{post.content}}</p>
+      <h3>{{post.Author}}</h3>
+    </div>
+    {% endfor %} {% else %}
+    <p>No articls are available.</p>
+    {% endif %}
+  </body>
+</html>
