@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+      integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Blogy Article</h1>
+      {% if art %}
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{art.title}}</h3>
+
+          <p class="card-text">{{art.content}}</p>
+          <h4>{{art.Author}}</h4>
+        </div>
+      </div>
+      {% else %}
+      <p>No article are available.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
