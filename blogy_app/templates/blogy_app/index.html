@@ -1,15 +1,27 @@
 <html>
-  {% load static %}
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+      integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
+      crossorigin="anonymous"
+    />
+  </head>
   <body>
-    {% if articles %} {% for post in articles %}
-    <div>
-      <h1>{{post.title}}</h1>
+    <div class="container">
+      <h1>Blogy Article</h1>
+      {% if articles %} {% for post in articles %}
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{post.title}}</h3>
 
-      <p>{{post.content}}</p>
-      <h3>{{post.Author}}</h3>
+          <p class="card-text">{{post.content|truncatewords:30}}</p>
+          <h4>{{post.Author}}</h4>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <p>No articls are available.</p>
+      {% endif %}
     </div>
-    {% endfor %} {% else %}
-    <p>No articls are available.</p>
-    {% endif %}
   </body>
 </html>
