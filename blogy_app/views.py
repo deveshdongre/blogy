@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Articles
+from .models import Articles, models
 # Create your views here.
 
 
@@ -20,3 +20,9 @@ def article(request, article_id):
     article = Articles.objects.filter(id=article_id)
 
     return render(request, 'blogy_app/article.html', {'art': article and len(article) > 0 and article[0]})
+
+
+def update(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.profile.bio = 'Hi this is updated BIO'
+    user.save()
