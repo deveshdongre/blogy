@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Blogy Login</title>
+  </head>
+  <body>
+    {% block content %}
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %} 
+      {{ form.username.label }}
+      {{ form.username }}
+    </br>
+  </br>
+
+      {{ form.email.label }}
+      {{ form.email }}
+    </br>
+  </br>  
+      {{ form.password1.label }}
+      {{ form.password1 }}
+    </br>
+  </br>  
+      {{ form.password2.label }}
+      {{ form.password2 }}
+    </br>
+  </br>
+      {{ form.first_name.label }}
+      {{ form.first_name }}
+    </br>
+  </br>
+      {{ form.last_name.label }}
+      {{ form.last_name }}
+    </br>
+  </br>
+      {{ form.birthdate.label }}
+      {{ form.birthdate }}
+    </br>
+  </br>
+
+      <button type="submit">Sign up</button>
+    </form>
+    {% endblock %}
+  </body>
+</html>
