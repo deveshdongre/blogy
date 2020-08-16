@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Articles, Profile
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserCreateForm
+
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required()
 def users(request):
     print(request)
     users = User.objects.all()
@@ -14,6 +17,7 @@ def users(request):
     return render(request, 'blogy_app/users.html', {'users': users})
 
 
+@login_required()
 def index(request):
     articles = Articles.objects.all()
     return render(request, 'blogy_app/index.html', {'articles': articles})
@@ -36,14 +40,24 @@ def login_route(request):
         password = request.POST['password']
         print(username, password)
         user = authenticate(request, username=username, password=password)
+        next_url = request.GET.get('next')
         if user is not None:
             login(request, user)
+            if next_url is not None:
+                return redirect(next_url)
             # Redirect to a success page.
             return redirect(index)
         else:
-            pass
+            return render(request, 'blogy_app/login.html', {})
     else:
+        if request.user.is_authenticated:
+            return redirect(index)
         return render(request, 'blogy_app/login.html', {})
+
+
+def logout_route(request):
+    logout(request)
+    return redirect('login_route')
 
 
 def register(request):
